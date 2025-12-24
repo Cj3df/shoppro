@@ -1,0 +1,1354 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <title>ShopMaster Pro — MASTER DOCUMENTATION (v3)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Tailwind via CDN (for static documentation) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-slate-50 text-slate-900">
+    <!-- Page Wrapper -->
+    <div class="min-h-screen">
+      <!-- Top Bar -->
+      <header
+        class="border-b border-slate-200 bg-white/90 backdrop-blur sticky top-0 z-20"
+      >
+        <div
+          class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between gap-4"
+        >
+          <div>
+            <h1 class="text-lg sm:text-2xl font-semibold tracking-tight">
+              ShopMaster Pro
+              <span class="text-sky-600">— MASTER DOCUMENTATION (v3)</span>
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-500">
+              Combined BRD, SRS, HLD, LLD, Developer Guide, User Manual &amp;
+              Implementation Reference
+            </p>
+          </div>
+          <div class="text-right text-xs sm:text-sm text-slate-500">
+            <p>Version: v3 (Implementation-aligned)</p>
+            <p>Date: 26 November 2025</p>
+          </div>
+        </div>
+        <!-- Quick Nav -->
+        <nav
+          class="border-t border-slate-200 bg-white/95 backdrop-blur-sm text-xs sm:text-sm"
+        >
+          <div
+            class="max-w-6xl mx-auto px-4 py-2 flex flex-wrap gap-2 sm:gap-3"
+          >
+            <a
+              href="#brd"
+              class="px-3 py-1 rounded-full bg-slate-900 text-white hover:bg-slate-800 transition"
+              >BRD</a
+            >
+            <a
+              href="#srs"
+              class="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200"
+              >SRS</a
+            >
+            <a
+              href="#hld"
+              class="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200"
+              >HLD</a
+            >
+            <a
+              href="#lld"
+              class="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200"
+              >LLD</a
+            >
+            <a
+              href="#dev-guide"
+              class="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200"
+              >Developer Guide</a
+            >
+            <a
+              href="#user-manual"
+              class="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200"
+              >User Manual</a
+            >
+            <a
+              href="#impl-ref"
+              class="px-3 py-1 rounded-full bg-emerald-600 text-white hover:bg-emerald-500"
+              >Implementation Reference</a
+            >
+            <a
+              href="#appendix"
+              class="px-3 py-1 rounded-full bg-slate-100 hover:bg-slate-200"
+              >Appendix</a
+            >
+          </div>
+        </nav>
+      </header>
+
+      <!-- Content -->
+      <main class="max-w-6xl mx-auto px-4 py-8 sm:py-10">
+        <!-- Cover / Overview -->
+        <section id="overview" class="mb-10">
+          <div
+            class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-7"
+          >
+            <h2 class="text-xl sm:text-2xl font-semibold mb-3">
+              Project Overview
+            </h2>
+            <p class="text-sm text-slate-600 mb-4">
+              <span class="font-semibold">ShopMaster Pro</span> is a retail ERP
+              style application that combines inventory management, order
+              management, basic analytics and a simple customer storefront. This
+              document is the single master reference for business
+              requirements,technical design and the exact implementation plan
+              (frontend + backend) used in the current codebase.
+            </p>
+
+            <div
+              class="grid md:grid-cols-3 gap-4 text-xs sm:text-sm text-slate-700"
+            >
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 flex flex-col gap-1"
+              >
+                <h3 class="font-semibold text-slate-800">Document Scope</h3>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Business Requirements (BRD)</li>
+                  <li>Software Requirements (SRS)</li>
+                  <li>High-Level &amp; Low-Level Design</li>
+                  <li>Developer Guide &amp; User Manual</li>
+                  <li>
+                    Final file/folder structure for
+                    <span class="font-medium">implementation</span>
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 flex flex-col gap-1"
+              >
+                <h3 class="font-semibold text-slate-800">
+                  Target Environment
+                </h3>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Backend: Node.js + Express + MongoDB (Mongoose)</li>
+                  <li>
+                    Frontend: React + Vite + Tailwind CSS (RAFCE components)
+                  </li>
+                  <li>Auth: JWT + role-based access (admin, staff, customer)</li>
+                  <li>
+                    Deploy: Backend + Frontend on Render (or similar PaaS)
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 flex flex-col gap-1"
+              >
+                <h3 class="font-semibold text-slate-800">
+                  This Version (v3) Aligns With
+                </h3>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>
+                    <span class="font-medium">CommonJS</span> based Node
+                    backend
+                  </li>
+                  <li>
+                    MongoDB running locally:
+                    <span class="font-mono text-xs"
+                      >mongodb://localhost:27017/shopmaster_pro</span
+                    >
+                  </li>
+                  <li>No separate <code>config/</code> folder</li>
+                  <li>Finalised backend + frontend file names for GitHub</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================== 1. BRD ======================== -->
+        <section id="brd" class="mb-10">
+          <div
+            class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-7"
+          >
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4">
+              1. Business Requirements Document (BRD)
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-2">1.1 Executive Summary</h3>
+            <p class="text-sm text-slate-700 mb-4">
+              ShopMaster Pro aims to provide small and medium retail businesses
+              a single web-based system to manage products, stock,
+              procurement,purchasing, order processing and basic analytics. The
+              system behaves like a simplified Zoho Inventory / Shopify backend
+              tailored for Indian retail workflows.
+            </p>
+
+            <h3 class="text-lg font-semibold mb-2">1.2 Problem Statement</h3>
+            <p class="text-sm text-slate-700 mb-4">
+              Traditional spreadsheet or paper-based inventory tracking leads to
+              stock mismatch, manual calculation errors, and poor visibility
+              into profit and inventory value. There is also no unified view of
+              orders, reserved stock and low stock alerts. Retail owners need a
+              lightweight system which is:
+            </p>
+            <ul
+              class="list-disc list-inside text-sm text-slate-700 space-y-1 mb-4"
+            >
+              <li>Easy to onboard, with minimal training</li>
+              <li>Browser-based, mobile-friendly</li>
+              <li>Supports multiple staff logins with restricted access</li>
+              <li>Provides clear inventory &amp; sales dashboards</li>
+            </ul>
+
+            <h3 class="text-lg font-semibold mb-2">
+              1.3 Goals &amp; Success Metrics
+            </h3>
+            <div class="grid md:grid-cols-2 gap-4 mb-4 text-sm text-slate-700">
+              <div>
+                <p class="font-semibold mb-1">Primary Goals</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Single source of truth for stock &amp; orders</li>
+                  <li>
+                    Transparent inventory valuation using weighted average price
+                  </li>
+                  <li>Efficient order flow from cart to dispatch</li>
+                  <li>Simple dashboard for daily decision making</li>
+                </ul>
+              </div>
+              <div>
+                <p class="font-semibold mb-1">Success Metrics</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>&gt;90% of stock updates done via the system</li>
+                  <li>
+                    Stock mismatch reduced &lt; 2% compared to manual records
+                  </li>
+                  <li>Order processing time reduced by at least 30%</li>
+                  <li>System uptime &gt; 99% on managed hosting</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">1.4 In-Scope (MVP)</h3>
+            <ul
+              class="list-disc list-inside text-sm text-slate-700 space-y-1 mb-4"
+            >
+              <li>
+                Product catalogue with dynamic attributes &amp; variants (size,
+                colour, etc.)
+              </li>
+              <li>
+                Inventory engine:
+                <span class="italic"
+                  >stock-in, stock-out, weighted average purchase price</span
+                >
+              </li>
+              <li>
+                Order management:
+                <span class="italic"
+                  >cart, checkout, order lifecycle &amp; status</span
+                >
+              </li>
+              <li>
+                Dashboard with core KPIs:
+                <span class="italic"
+                  >sales, inventory value, low stock, top-selling products</span
+                >
+              </li>
+              <li>
+                Role-based access (admin, staff, customer) with audit trail via
+                InventoryLog
+              </li>
+              <li>Image upload for products (local upload, Cloudinary later)</li>
+            </ul>
+
+            <h3 class="text-lg font-semibold mb-2">1.5 Out-of-Scope (Phase 1)</h3>
+            <ul
+              class="list-disc list-inside text-sm text-slate-700 space-y-1 mb-2"
+            >
+              <li>GST filing &amp; advanced accounting / ledger</li>
+              <li>POS hardware integration (barcode scanners, printers)</li>
+              <li>Multi-tenant SaaS billing, subscription plans</li>
+              <li>Advanced BI dashboards and exports</li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ======================== 2. SRS ======================== -->
+        <section id="srs" class="mb-10">
+          <div
+            class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-7"
+          >
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4">
+              2. Software Requirements Specification (SRS)
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-2">
+              2.1 System Actors &amp; Roles
+            </h3>
+            <div class="grid md:grid-cols-3 gap-4 mb-4 text-sm text-slate-700">
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-3 space-y-1"
+              >
+                <p class="font-semibold">Admin</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Full access to all modules &amp; settings</li>
+                  <li>Manage users, roles and permissions</li>
+                  <li>Configure categories and product catalogue</li>
+                  <li>View complete dashboards &amp; reports</li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-3 space-y-1"
+              >
+                <p class="font-semibold">Staff</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Limited access to inventory &amp; orders</li>
+                  <li>Create / update products (as permitted)</li>
+                  <li>Perform stock-in / stock-out entries</li>
+                  <li>Process customer orders</li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-3 space-y-1"
+              >
+                <p class="font-semibold">Customer</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Register / login to storefront</li>
+                  <li>Browse products &amp; variants</li>
+                  <li>Add to cart and place orders</li>
+                  <li>View own order history &amp; status</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">2.2 Functional Modules</h3>
+            <div class="overflow-x-auto text-sm text-slate-700 mb-4">
+              <table class="min-w-full border border-slate-200 text-left">
+                <thead class="bg-slate-100">
+                  <tr>
+                    <th class="px-3 py-2 border-b border-slate-200">Module</th>
+                    <th class="px-3 py-2 border-b border-slate-200">
+                      Key Capabilities
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 align-top font-medium">
+                      Authentication
+                    </td>
+                    <td class="px-3 py-2">
+                      JWT-based auth, signup, login, password hashing (bcrypt),
+                      role-based access, token validation middleware.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 align-top font-medium">Products</td>
+                    <td class="px-3 py-2">
+                      CRUD for products with variants, attributes, images, SKU
+                      &amp; slug generation, category linking.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 align-top font-medium">Categories</td>
+                    <td class="px-3 py-2">
+                      Category tree, parent-child relation (optional),
+                      activation status, product counts.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 align-top font-medium">Inventory</td>
+                    <td class="px-3 py-2">
+                      Stock-in, stock-out, purchase batches, weighted average
+                      price, inventory log, low stock identification.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 align-top font-medium">Orders</td>
+                    <td class="px-3 py-2">
+                      Cart management, stock reservation, order creation, status
+                      updates (Pending → Confirmed → Shipped → Completed /
+                      Cancelled).
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 align-top font-medium">Dashboard</td>
+                    <td class="px-3 py-2">
+                      KPIs: total sales, total orders, inventory valuation, low
+                      stock count, top products, date-wise sales graph.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">
+              2.3 Non-functional Requirements
+            </h3>
+            <ul
+              class="list-disc list-inside text-sm text-slate-700 space-y-1 mb-4"
+            >
+              <li>System availability &gt; 99% on managed hosting</li>
+              <li>
+                Response time for core operations (view stock, create order)
+                &lt; 2 seconds on normal load
+              </li>
+              <li>Secure password storage using bcrypt</li>
+              <li>JWT expiry with refresh on login</li>
+              <li>
+                Validation on all user inputs (server-side + basic client-side)
+              </li>
+            </ul>
+
+            <h3 class="text-lg font-semibold mb-2">
+              2.4 Acceptance Criteria (High Level)
+            </h3>
+            <ul
+              class="list-disc list-inside text-sm text-slate-700 space-y-1 mb-2"
+            >
+              <li>
+                All stock movements reflected correctly in
+                <span class="font-mono text-xs">InventoryLog</span>.
+              </li>
+              <li>
+                Orders cannot be confirmed if available stock is insufficient
+                (after reservations).
+              </li>
+              <li>
+                Weighted average purchase price is correctly updated after each
+                stock-in.
+              </li>
+              <li>
+                Dashboard KPIs match manual calculations from sample test data.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ======================== 3. HLD ======================== -->
+        <section id="hld" class="mb-10">
+          <div
+            class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-7"
+          >
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4">
+              3. High-Level Design (HLD)
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-2">3.1 System Architecture</h3>
+            <div
+              class="grid md:grid-cols-2 gap-4 text-sm text-slate-700 mb-4"
+            >
+              <div>
+                <p class="font-semibold mb-1">Layers</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>
+                    <span class="font-medium">Frontend (React + Vite)</span
+                    >: Tailwind-based SPA, axios for API calls.
+                  </li>
+                  <li>
+                    <span class="font-medium">Backend (Node + Express)</span
+                    >: RESTful APIs, controllers, middleware and utilities.
+                  </li>
+                  <li>
+                    <span class="font-medium">Database (MongoDB)</span
+                    >: Mongoose models for users, products, categories,
+                    inventory logs &amp; orders.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <p class="font-semibold mb-1">Key Integrations</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>JWT for authentication &amp; authorization</li>
+                  <li>Multer for local image upload (Phase 1)</li>
+                  <li>Cloudinary for image storage (Phase 2)</li>
+                  <li>Nodemailer for email notifications (optional)</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">
+              3.2 High-Level Module Diagram (Textual)
+            </h3>
+            <div
+              class="bg-slate-50 rounded-xl border border-slate-100 p-4 text-xs sm:text-sm text-slate-700 mb-4"
+            >
+              <p class="font-mono whitespace-pre leading-relaxed">
+Customer (Browser)
+  ↓  (HTTPS, JSON)
+Frontend (React + Vite + Tailwind)
+  ↓  (axios HTTP calls)
+Backend API (Express Server)
+  ├─ Auth Module
+  ├─ User &amp; Role Module
+  ├─ Product &amp; Category Module
+  ├─ Inventory Engine
+  ├─ Order Engine
+  └─ Dashboard &amp; Reports
+  ↓  (Mongoose)
+MongoDB (shopmaster_pro)
+              </p>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">
+              3.3 High-Level Use Case Flows
+            </h3>
+
+            <div class="space-y-3 text-sm text-slate-700">
+              <div>
+                <p class="font-semibold mb-1">UC-1: Add Product &amp; Initial Stock</p>
+                <ol class="list-decimal list-inside space-y-1">
+                  <li>Admin creates product with attributes &amp; base price.</li>
+                  <li>
+                    Admin performs stock-in entry using purchase batch details.
+                  </li>
+                  <li>
+                    System updates inventory qty, avg purchase price and writes
+                    to InventoryLog.
+                  </li>
+                </ol>
+              </div>
+              <div>
+                <p class="font-semibold mb-1">
+                  UC-2: Customer Places Online Order
+                </p>
+                <ol class="list-decimal list-inside space-y-1">
+                  <li>Customer browses storefront and adds items to cart.</li>
+                  <li>
+                    Customer checks out; backend reserves stock and creates
+                    order with
+                    <span class="italic">Pending</span> status.
+                  </li>
+                  <li>
+                    Staff/admin confirms order; stock-out is recorded; status
+                    moves to
+                    <span class="italic">Confirmed / Shipped / Completed</span>.
+                  </li>
+                </ol>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================== 4. LLD ======================== -->
+        <section id="lld" class="mb-10">
+          <div
+            class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-7"
+          >
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4">
+              4. Low-Level Design (LLD)
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-2">4.1 Core Data Models</h3>
+            <p class="text-sm text-slate-700 mb-2">
+              Only key fields are shown here. Full schema is implemented via
+              Mongoose models in
+              <code class="bg-slate-100 px-1 rounded text-xs"
+                >/backend/models</code
+              >.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-4 text-xs sm:text-sm mb-4">
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-1"
+              >
+                <p class="font-semibold">User</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>name, email, passwordHash</li>
+                  <li>role: <span class="italic">admin | staff | customer</span></li>
+                  <li>isActive, createdAt, updatedAt</li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-1"
+              >
+                <p class="font-semibold">Category</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>name, slug</li>
+                  <li>description</li>
+                  <li>parentCategory (optional)</li>
+                  <li>isActive</li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-1"
+              >
+                <p class="font-semibold">Product</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>name, slug, sku</li>
+                  <li>basePrice, sellingPrice</li>
+                  <li>category (ref Category)</li>
+                  <li>attributes &amp; variants (size, colour, etc.)</li>
+                  <li>images[], isActive</li>
+                  <li>currentStock, avgPurchasePrice</li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-1"
+              >
+                <p class="font-semibold">InventoryLog</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>product (ref Product)</li>
+                  <li>type: <span class="italic">stock-in | stock-out</span></li>
+                  <li>qtyChange, prevQty, newQty</li>
+                  <li>purchasePrice, avgPurchaseAfter</li>
+                  <li>note, createdBy (ref User)</li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-1"
+              >
+                <p class="font-semibold">Order</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>customer (ref User)</li>
+                  <li>items: product, qty, priceAtOrder, lineTotal</li>
+                  <li>
+                    status:
+                    <span class="italic"
+                      >pending | confirmed | shipped | completed |
+                      cancelled</span
+                    >
+                  </li>
+                  <li>paymentInfo, shippingAddress</li>
+                  <li>reservedStockLog (for inventory sync)</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">
+              4.2 Inventory Engine — Weighted Average Logic
+            </h3>
+            <p class="text-sm text-slate-700 mb-2">
+              Implemented in
+              <code class="bg-slate-100 px-1 rounded text-xs"
+                >/backend/utils/weightedAvgPrice.js</code
+              >.
+            </p>
+            <p class="text-sm text-slate-700 mb-2">
+              Given existing stock <span class="font-mono">oldQty</span> at
+              average purchase price
+              <span class="font-mono">oldPrice</span> and a new purchase batch
+              with quantity <span class="font-mono">newQty</span> and purchase
+              price <span class="font-mono">newPrice</span>:
+            </p>
+            <pre
+              class="bg-slate-900 text-slate-50 rounded-xl text-xs sm:text-sm p-4 overflow-x-auto mb-4"
+            >avgPurchase = (oldQty * oldPrice + newQty * newPrice) / (oldQty + newQty)</pre>
+
+            <p class="text-sm text-slate-700 mb-2">
+              Inventory value is then calculated as:
+            </p>
+            <pre
+              class="bg-slate-900 text-slate-50 rounded-xl text-xs sm:text-sm p-4 overflow-x-auto mb-4"
+            >inventoryValue = Σ (currentStock_i × avgPurchase_i)</pre>
+
+            <p class="text-sm text-slate-700 mb-2">
+              Profit per sale line is:
+            </p>
+            <pre
+              class="bg-slate-900 text-slate-50 rounded-xl text-xs sm:text-sm p-4 overflow-x-auto mb-4"
+            >profit = sellingPrice - avgPurchase</pre>
+
+            <h3 class="text-lg font-semibold mb-2">
+              4.3 Selected API Contracts (REST)
+            </h3>
+            <div class="overflow-x-auto text-xs sm:text-sm text-slate-700 mb-4">
+              <table class="min-w-full border border-slate-200 text-left">
+                <thead class="bg-slate-100">
+                  <tr>
+                    <th class="px-3 py-2 border-b border-slate-200">Endpoint</th>
+                    <th class="px-3 py-2 border-b border-slate-200">Method</th>
+                    <th class="px-3 py-2 border-b border-slate-200">Purpose</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 font-mono">POST /api/auth/signup</td>
+                    <td class="px-3 py-2">POST</td>
+                    <td class="px-3 py-2">
+                      Create new user account, send token.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 font-mono">POST /api/auth/login</td>
+                    <td class="px-3 py-2">POST</td>
+                    <td class="px-3 py-2">
+                      Authenticate user, issue JWT access token.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 font-mono">GET /api/products</td>
+                    <td class="px-3 py-2">GET</td>
+                    <td class="px-3 py-2">
+                      List products with filters &amp; pagination.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 font-mono">POST /api/products</td>
+                    <td class="px-3 py-2">POST</td>
+                    <td class="px-3 py-2">
+                      Create product (admin/staff with permission).
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 font-mono">
+                      POST /api/inventory/stock-in
+                    </td>
+                    <td class="px-3 py-2">POST</td>
+                    <td class="px-3 py-2">
+                      Record purchase entry, update stock &amp; avg price.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 font-mono">
+                      POST /api/inventory/stock-out
+                    </td>
+                    <td class="px-3 py-2">POST</td>
+                    <td class="px-3 py-2">
+                      Reduce stock (e.g. manual adjustment or return).
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 font-mono">POST /api/orders</td>
+                    <td class="px-3 py-2">POST</td>
+                    <td class="px-3 py-2">
+                      Create order, reserve stock, set initial status.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 font-mono">
+                      PUT /api/orders/:id/status
+                    </td>
+                    <td class="px-3 py-2">PUT</td>
+                    <td class="px-3 py-2">
+                      Update order status &amp; sync inventory.
+                    </td>
+                  </tr>
+                  <tr class="odd:bg-white even:bg-slate-50">
+                    <td class="px-3 py-2 font-mono">
+                      GET /api/dashboard/stats
+                    </td>
+                    <td class="px-3 py-2">GET</td>
+                    <td class="px-3 py-2">
+                      High level KPIs for dashboard cards.
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- ======================== 5. Developer Guide ======================== -->
+        <section id="dev-guide" class="mb-10">
+          <div
+            class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-7"
+          >
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4">
+              5. Developer Guide
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-2">5.1 Tech Stack</h3>
+            <div
+              class="grid md:grid-cols-2 gap-4 text-sm text-slate-700 mb-4"
+            >
+              <div>
+                <p class="font-semibold mb-1">Backend</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Node.js (v18+) with Express</li>
+                  <li>MongoDB (local) with Mongoose ODM</li>
+                  <li>CommonJS modules (<code>require</code> / <code>module.exports</code>)</li>
+                  <li>JWT for auth, bcrypt for hashing</li>
+                  <li>Multer for file upload, Cloudinary SDK (Phase 2)</li>
+                </ul>
+              </div>
+              <div>
+                <p class="font-semibold mb-1">Frontend</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>React (RAFCE functional components) + Vite</li>
+                  <li>Tailwind CSS via PostCSS</li>
+                  <li>Axios for API requests</li>
+                  <li>React Router DOM for routing</li>
+                  <li>Context API for auth state</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">5.2 Environment Setup</h3>
+            <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-700 mb-4">
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-2"
+              >
+                <p class="font-semibold">Backend — .env (Development)</p>
+                <pre
+                  class="bg-slate-900 text-slate-50 rounded-lg text-xs p-3 overflow-x-auto"
+                >PORT=5000
+MONGO_URI=mongodb://localhost:27017/shopmaster_pro
+JWT_SECRET=your_jwt_secret_key_here
+
+# Cloudinary (Phase 2)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Email (optional)
+EMAIL_USER=your_email@gmail.com
+EMAIL_PASS=your_app_password</pre>
+              </div>
+              <div
+                class="bg-slate-50 rounded-xl border border-slate-100 p-4 space-y-2"
+              >
+                <p class="font-semibold">Backend — server.js (Connection)</p>
+                <pre
+                  class="bg-slate-900 text-slate-50 rounded-lg text-xs p-3 overflow-x-auto"
+                >const express = require('express');
+const mongoose = require('mongoose');
+require('dotenv').config();
+
+const app = express();
+
+// middleware, routes, etc...
+
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() =&gt; {
+    console.log('MongoDB Connected');
+    app.listen(process.env.PORT || 5000, () =&gt; {
+      console.log('Server running on port', process.env.PORT || 5000);
+    });
+  })
+  .catch((err) =&gt; {
+    console.error('MongoDB Error:', err);
+  });</pre>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">5.3 Tailwind Frontend Setup</h3>
+            <p class="text-sm text-slate-700 mb-2">
+              Standard Vite + React + Tailwind setup (same pattern as FlowBoard
+              project):
+            </p>
+            <ul
+              class="list-disc list-inside text-sm text-slate-700 space-y-1 mb-4"
+            >
+              <li>
+                <code class="bg-slate-100 px-1 rounded text-xs">index.css</code>
+                imports Tailwind layers:
+                <code class="bg-slate-100 px-1 rounded text-xs"
+                  >@tailwind base;</code
+                >
+                <code class="bg-slate-100 px-1 rounded text-xs"
+                  >@tailwind components;</code
+                >
+                <code class="bg-slate-100 px-1 rounded text-xs"
+                  >@tailwind utilities;</code
+                >
+              </li>
+              <li>
+                Only Tailwind utility classes are used for styling; no custom
+                CSS files (except base index).
+              </li>
+              <li>
+                All components follow RAFCE snippet:
+                <code class="bg-slate-100 px-1 rounded text-xs"
+                  >const Component = () =&gt; { ... } export default
+                  Component;</code
+                >
+              </li>
+            </ul>
+
+            <h3 class="text-lg font-semibold mb-2">5.4 Development Workflow</h3>
+            <ul
+              class="list-disc list-inside text-sm text-slate-700 space-y-1 mb-2"
+            >
+              <li>Create empty file → commit → then fill implementation.</li>
+              <li>
+                After each module, test via Postman (backend) and React pages
+                (frontend).
+              </li>
+              <li>
+                Keep naming consistent with this document to avoid merge
+                conflicts.
+              </li>
+              <li>
+                Comments can be in Hindi + English mix, but code must remain
+                clean &amp; readable.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ======================== 6. User Manual ======================== -->
+        <section id="user-manual" class="mb-10">
+          <div
+            class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-7"
+          >
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4">
+              6. User Manual (High-Level)
+            </h2>
+
+            <h3 class="text-lg font-semibold mb-2">6.1 Login &amp; Roles</h3>
+            <ul
+              class="list-disc list-inside text-sm text-slate-700 space-y-1 mb-4"
+            >
+              <li>
+                Navigate to the admin URL (e.g.
+                <span class="font-mono text-xs">/admin/login</span>).
+              </li>
+              <li>Enter registered email and password and click Login.</li>
+              <li>
+                If credentials are valid, a JWT token is issued and stored by
+                the frontend (e.g. localStorage).
+              </li>
+              <li>
+                Based on role, admin/staff will see relevant menu items in the
+                sidebar.
+              </li>
+            </ul>
+
+            <h3 class="text-lg font-semibold mb-2">6.2 Admin Panels</h3>
+            <div
+              class="grid md:grid-cols-2 gap-4 text-sm text-slate-700 mb-4"
+            >
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-4 space-y-1"
+              >
+                <p class="font-semibold">Dashboard</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Today’s sales, orders &amp; revenue</li>
+                  <li>Inventory value and low stock count</li>
+                  <li>Top-selling products</li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-4 space-y-1"
+              >
+                <p class="font-semibold">Products</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Create / edit / archive products</li>
+                  <li>Upload product images</li>
+                  <li>Assign categories &amp; attributes</li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-4 space-y-1"
+              >
+                <p class="font-semibold">Inventory</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Perform stock-in for new purchase batches</li>
+                  <li>Perform stock-out for adjustments or returns</li>
+                  <li>
+                    View InventoryLog entries for audit (who changed what &amp;
+                    when)
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-4 space-y-1"
+              >
+                <p class="font-semibold">Orders</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>View customer orders and statuses</li>
+                  <li>Update status to Confirmed / Shipped / Completed</li>
+                  <li>Cancel orders with reason</li>
+                </ul>
+              </div>
+            </div>
+
+            <h3 class="text-lg font-semibold mb-2">6.3 Storefront User Flow</h3>
+            <ol class="list-decimal list-inside text-sm text-slate-700 space-y-1">
+              <li>Customer visits storefront home page.</li>
+              <li>Browses categories and products.</li>
+              <li>Adds items to cart and proceeds to checkout.</li>
+              <li>Enters shipping details and confirms order.</li>
+              <li>
+                Receives confirmation; can view order history in
+                <span class="italic">My Orders</span>.
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- ======================== 7. Consolidated Implementation Reference ======================== -->
+        <section id="impl-ref" class="mb-10">
+          <div
+            class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-7"
+          >
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4">
+              7. Consolidated Implementation Reference (Final v3)
+            </h2>
+
+            <!-- 7.1 Backend Structure -->
+            <h3 class="text-lg font-semibold mb-2">7.1 Backend Folder &amp; File Structure</h3>
+            <p class="text-sm text-slate-700 mb-2">
+              Final Node + Express + MongoDB backend structure (CommonJS, no
+              <code>config/</code> folder). This is the reference for your GitHub and Render deployment.
+            </p>
+            <pre
+              class="bg-slate-900 text-slate-50 rounded-xl text-xs sm:text-sm p-4 overflow-x-auto mb-4"
+            >shopmaster-pro/
+└── backend/
+    ├── server.js                 # Entry point + MongoDB connection (CommonJS)
+    ├── package.json
+    ├── .env                      # Environment variables (local only, not committed)
+    ├── .gitignore
+    │
+    ├── models/
+    │   ├── userModel.js
+    │   ├── categoryModel.js
+    │   ├── productModel.js
+    │   ├── inventoryLogModel.js
+    │   └── orderModel.js
+    │
+    ├── controllers/
+    │   ├── authController.js
+    │   ├── userController.js
+    │   ├── categoryController.js
+    │   ├── productController.js
+    │   ├── inventoryController.js
+    │   ├── orderController.js
+    │   └── dashboardController.js
+    │
+    ├── routes/
+    │   ├── authRoutes.js
+    │   ├── userRoutes.js
+    │   ├── categoryRoutes.js
+    │   ├── productRoutes.js
+    │   ├── inventoryRoutes.js
+    │   ├── orderRoutes.js
+    │   └── dashboardRoutes.js
+    │
+    ├── middleware/
+    │   ├── authMiddleware.js     # JWT verification, attaches user to req
+    │   ├── roleMiddleware.js     # Role based access control
+    │   ├── errorHandler.js       # Centralised error handler
+    │   └── validateRequest.js    # Request body / params validation
+    │
+    ├── utils/
+    │   ├── generateToken.js      # JWT token helpers
+    │   ├── sendEmail.js          # Nodemailer wrapper (optional)
+    │   ├── slugGenerator.js      # Slug from product/category name
+    │   ├── skuGenerator.js       # Simple SKU generator
+    │   ├── weightedAvgPrice.js   # Inventory valuation helper
+    │   └── uploadHelper.js       # Multer + (future) Cloudinary integration
+    │
+    └── scripts/
+        └── seedData.js           # Seed sample users/products/categories</pre>
+
+            <!-- 7.2 Frontend Structure -->
+            <h3 class="text-lg font-semibold mb-2">
+              7.2 Frontend Folder &amp; File Structure (React + Vite + Tailwind)
+            </h3>
+            <p class="text-sm text-slate-700 mb-2">
+              All React components should follow RAFCE style and Tailwind-based
+              styling only. This structure separates admin panel, storefront,
+              shared components and routing.
+            </p>
+            <pre
+              class="bg-slate-900 text-slate-50 rounded-xl text-xs sm:text-sm p-4 overflow-x-auto mb-4"
+            >shopmaster-pro/
+└── frontend/
+    ├── index.html                  # Vite entry HTML
+    ├── package.json
+    ├── vite.config.js
+    ├── postcss.config.cjs
+    ├── tailwind.config.cjs
+    ├── .gitignore
+    │
+    └── src/
+        ├── main.jsx                # React entry
+        ├── App.jsx                 # Root layout + routing shell
+        ├── index.css               # Tailwind directives + base styles
+        │
+        ├── assets/
+        │   ├── logo.svg
+        │   ├── brand-icon.svg
+        │   └── empty-state.svg
+        │
+        ├── config/
+        │   └── apiClient.js        # axios instance with baseURL &amp; interceptors
+        │
+        ├── context/
+        │   └── AuthContext.jsx     # auth state, user, token, helpers
+        │
+        ├── hooks/
+        │   ├── useAuth.jsx
+        │   ├── useDebounce.jsx
+        │   └── usePagination.jsx
+        │
+        ├── layouts/
+        │   ├── AdminLayout.jsx     # Sidebar + topbar layout
+        │   └── StorefrontLayout.jsx# Public storefront layout
+        │
+        ├── components/
+        │   ├── common/
+        │   │   ├── Button.jsx
+        │   │   ├── Input.jsx
+        │   │   ├── Select.jsx
+        │   │   ├── Checkbox.jsx
+        │   │   ├── Modal.jsx
+        │   │   ├── Table.jsx
+        │   │   ├── Pagination.jsx
+        │   │   ├── Badge.jsx
+        │   │   └── Loader.jsx
+        │   │
+        │   ├── nav/
+        │   │   ├── Sidebar.jsx
+        │   │   ├── Topbar.jsx
+        │   │   └── Breadcrumbs.jsx
+        │   │
+        │   ├── dashboard/
+        │   │   ├── KpiCard.jsx
+        │   │   ├── SalesChart.jsx
+        │   │   └── InventoryWidget.jsx
+        │   │
+        │   ├── products/
+        │   │   ├── ProductForm.jsx
+        │   │   ├── ProductTable.jsx
+        │   │   └── VariantEditor.jsx
+        │   │
+        │   ├── categories/
+        │   │   ├── CategoryForm.jsx
+        │   │   └── CategoryTable.jsx
+        │   │
+        │   ├── inventory/
+        │   │   ├── StockMovementForm.jsx
+        │   │   └── InventoryLogTable.jsx
+        │   │
+        │   ├── orders/
+        │   │   ├── OrderTable.jsx
+        │   │   ├── OrderStatusBadge.jsx
+        │   │   └── OrderTimeline.jsx
+        │   │
+        │   └── storefront/
+        │       ├── ProductCard.jsx
+        │       ├── CartSummary.jsx
+        │       └── CheckoutSteps.jsx
+        │
+        ├── pages/
+        │   ├── auth/
+        │   │   ├── LoginPage.jsx
+        │   │   ├── RegisterPage.jsx
+        │   │   ├── ForgotPasswordPage.jsx
+        │   │   └── ResetPasswordPage.jsx
+        │   │
+        │   ├── admin/
+        │   │   ├── DashboardPage.jsx
+        │   │   ├── ProductsPage.jsx
+        │   │   ├── ProductCreatePage.jsx
+        │   │   ├── ProductEditPage.jsx
+        │   │   ├── CategoriesPage.jsx
+        │   │   ├── InventoryPage.jsx
+        │   │   ├── OrdersPage.jsx
+        │   │   ├── UsersPage.jsx
+        │   │   └── SettingsPage.jsx
+        │   │
+        │   └── storefront/
+        │       ├── HomePage.jsx
+        │       ├── CatalogPage.jsx
+        │       ├── ProductDetailPage.jsx
+        │       ├── CartPage.jsx
+        │       ├── CheckoutPage.jsx
+        │       ├── OrderSuccessPage.jsx
+        │       └── AccountOrdersPage.jsx
+        │
+        └── router/
+            ├── AppRouter.jsx        # All routes
+            ├── ProtectedRoute.jsx   # Auth guard
+            └── RoleRoute.jsx        # Role-based guard (admin/staff/customer)</pre>
+
+            <!-- 7.3 Frontend Component Style -->
+            <h3 class="text-lg font-semibold mb-2">
+              7.3 Frontend Component Style (RAFCE + Tailwind)
+            </h3>
+            <pre
+              class="bg-slate-900 text-slate-50 rounded-xl text-xs sm:text-sm p-4 overflow-x-auto mb-4"
+            >// Example RAFCE component (ProductCard.jsx)
+import React from 'react';
+
+const ProductCard = ({ product, onAddToCart }) =&gt; {
+  return (
+    &lt;div className="flex flex-col border border-slate-200 rounded-xl bg-white shadow-sm hover:shadow-md transition"&gt;
+      &lt;img
+        src={product.imageUrl}
+        alt={product.name}
+        className="w-full h-40 object-cover rounded-t-xl"
+      /&gt;
+      &lt;div className="p-4 flex flex-col gap-2"&gt;
+        &lt;h3 className="font-semibold text-slate-900 line-clamp-2"&gt;
+          {product.name}
+        &lt;/h3&gt;
+        &lt;p className="text-xs text-slate-500"&gt;{product.categoryName}&lt;/p&gt;
+        &lt;div className="flex items-center justify-between mt-1"&gt;
+          &lt;span className="font-semibold text-sky-600"&gt;
+            ₹{product.sellingPrice}
+          &lt;/span&gt;
+          &lt;button
+            onClick={onAddToCart}
+            className="px-3 py-1 rounded-full text-xs font-medium bg-slate-900 text-white hover:bg-slate-800"
+          &gt;
+            Add to Cart
+          &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+};
+
+export default ProductCard;</pre>
+
+            <!-- 7.4 Authentication & Middleware -->
+            <h3 class="text-lg font-semibold mb-2">
+              7.4 Authentication &amp; Middleware Summary
+            </h3>
+            <ul
+              class="list-disc list-inside text-sm text-slate-700 space-y-1 mb-2"
+            >
+              <li>
+                <code class="bg-slate-100 px-1 rounded text-xs"
+                  >authMiddleware.js</code
+                >: validates JWT, adds
+                <code class="bg-slate-100 px-1 rounded text-xs">req.user</code>.
+              </li>
+              <li>
+                <code class="bg-slate-100 px-1 rounded text-xs"
+                  >roleMiddleware.js</code
+                >: checks
+                <code class="bg-slate-100 px-1 rounded text-xs"
+                  >req.user.role</code
+                >
+                against allowed roles.
+              </li>
+              <li>
+                <code class="bg-slate-100 px-1 rounded text-xs"
+                  >errorHandler.js</code
+                >: central error handler with consistent JSON structure.
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ======================== 8. Appendix: Implementation Changes ======================== -->
+        <section id="appendix" class="mb-10">
+          <div
+            class="bg-white border border-slate-200 rounded-2xl shadow-sm p-5 sm:p-7"
+          >
+            <h2 class="text-xl sm:text-2xl font-semibold mb-4">
+              8. Appendix — Changes from Original Masterdoc (Implementation v3)
+            </h2>
+
+            <p class="text-sm text-slate-700 mb-4">
+              This section summarises the key differences between the original
+              master documentation and the current implementation-focused
+              version. All functional requirements remain preserved; only the
+              implementation style and folder organisation have been simplified.
+            </p>
+
+            <div class="grid md:grid-cols-2 gap-4 text-sm text-slate-700 mb-4">
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-4 space-y-1"
+              >
+                <p class="font-semibold">Config &amp; DB Connection</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>
+                    Original: separate
+                    <code class="bg-slate-100 px-1 rounded text-xs"
+                      >/config/db.js</code
+                    >
+                    file for MongoDB.
+                  </li>
+                  <li>
+                    Current: connection handled directly in
+                    <code class="bg-slate-100 px-1 rounded text-xs"
+                      >server.js</code
+                    >
+                    for simplicity (small single service).
+                  </li>
+                  <li>
+                    Database during development:
+                    <code class="bg-slate-100 px-1 rounded text-xs"
+                      >mongodb://localhost:27017/shopmaster_pro</code
+                    >.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-4 space-y-1"
+              >
+                <p class="font-semibold">Module System</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Original examples: ES Modules (import/export).</li>
+                  <li>Current: CommonJS (<code>require</code> / <code>module.exports</code>) everywhere.</li>
+                  <li>
+                    Reason: compatibility with existing Node projects and easier
+                    integration with tooling on Render.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-4 space-y-1"
+              >
+                <p class="font-semibold">Model File Naming</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Original: <code>User.js</code>, <code>Product.js</code>, etc.</li>
+                  <li>
+                    Current:
+                    <code class="bg-slate-100 px-1 rounded text-xs"
+                      >userModel.js</code
+                    >,
+                    <code class="bg-slate-100 px-1 rounded text-xs"
+                      >productModel.js</code
+                    >
+                    — camelCase + <span class="italic">Model</span> suffix.
+                  </li>
+                  <li>
+                    Reason: consistent with previous MERN projects and more
+                    explicit naming.
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="bg-slate-50 border border-slate-100 rounded-xl p-4 space-y-1"
+              >
+                <p class="font-semibold">Image Upload Strategy</p>
+                <ul class="list-disc list-inside space-y-1">
+                  <li>Original: direct Cloudinary usage in all flows.</li>
+                  <li>
+                    Current: Phase 1 uses local upload via
+                    <code class="bg-slate-100 px-1 rounded text-xs"
+                      >multer</code
+                    >
+                    (e.g. <code>backend/uploads/</code> folder).
+                  </li>
+                  <li>
+                    Phase 2: <code>uploadHelper.js</code> extended to upload to
+                    Cloudinary and store URLs.
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="text-sm text-slate-700">
+              ✅
+              <span class="font-semibold">All business logic remains intact</span
+              > — weighted average purchase price, inventory valuation, order
+              reservation logic, dashboard KPIs and role-based access control
+              match the original design. Only structure and naming are tuned to
+              your current coding style and deployment plan.
+            </p>
+          </div>
+        </section>
+
+        <!-- Footer Note -->
+        <footer class="pb-10 text-center text-xs text-slate-500">
+          <p>ShopMaster Pro — Master Documentation (v3)</p>
+          <p>Ready for GitHub, Render deployment &amp; PDF export.</p>
+        </footer>
+      </main>
+    </div>
+
+    <!-- Source reference (ignored in UI) -->
+    <!-- :contentReference[oaicite:0]{index=0} -->
+  </body>
+</html>
