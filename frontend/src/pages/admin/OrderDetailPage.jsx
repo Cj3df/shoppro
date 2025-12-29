@@ -10,11 +10,7 @@ const OrderDetailPage = () => {
     const [order, setOrder] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetchOrder();
-    }, [id]);
-
-    const fetchOrder = async () => {
+    const fetchOrder = React.useCallback(async () => {
         try {
             const response = await apiClient.get(`/orders/${id}`);
             const fetchedOrder = response.data.data.order;
@@ -25,7 +21,11 @@ const OrderDetailPage = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [id]);
+
+    useEffect(() => {
+        fetchOrder();
+    }, [fetchOrder]);
 
     const updateStatus = async (newStatus) => {
         if (!window.confirm(`Are you sure you want to mark this order as ${newStatus}?`)) return;

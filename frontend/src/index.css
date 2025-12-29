@@ -281,4 +281,24 @@
 
 .btn-premium-primary {
     background-image: linear-gradient(to right, var(--emerald-600), #0d9488);
+    color: #ffffff;
+}
+
+.btn-premium-primary:hover {
+    background-image: linear-gradient(to right, var(--emerald-700), #0f766e);
+}
+
+.btn-premium-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }

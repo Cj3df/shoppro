@@ -25,14 +25,7 @@ const ProductFormPage = () => {
         sku: '' // Auto-generated usually
     });
 
-    useEffect(() => {
-        fetchCategories();
-        if (isEditMode) {
-            fetchProduct();
-        }
-    }, [id]);
-
-    const fetchCategories = async () => {
+    const fetchCategories = React.useCallback(async () => {
         try {
             // Mocking categories if endpoint doesn't exist yet, or check typical REST endpoint
             // masdoc.html mentions "Configure categories". Assuming GET /api/categories or similar
@@ -43,9 +36,9 @@ const ProductFormPage = () => {
         } catch (error) {
             console.warn('Failed to fetch categories, using manual input or empty list');
         }
-    };
+    }, []);
 
-    const fetchProduct = async () => {
+    const fetchProduct = React.useCallback(async () => {
         try {
             const response = await apiClient.get(`/products/${id}`);
             const product = response.data.data.product;
@@ -66,7 +59,14 @@ const ProductFormPage = () => {
         } finally {
             setFetching(false);
         }
-    };
+    }, [id, navigate]);
+
+    useEffect(() => {
+        fetchCategories();
+        if (isEditMode) {
+            fetchProduct();
+        }
+    }, [id, isEditMode, fetchCategories, fetchProduct]);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;

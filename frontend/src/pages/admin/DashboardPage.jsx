@@ -17,7 +17,6 @@ import { mockDashboardStats, mockOrders, mockLowStockProducts } from '../../data
 
 const DashboardPage = () => {
     const [stats, setStats] = useState(mockDashboardStats);
-    const [loading, setLoading] = useState(false); // Start as false since we already have mock data
 
     useEffect(() => {
         fetchDashboardStats();
@@ -25,7 +24,6 @@ const DashboardPage = () => {
 
     const fetchDashboardStats = async () => {
         try {
-            setLoading(true);
             const response = await apiClient.get('/dashboard/stats');
             if (response.data && response.data.success) {
                 // Merge API data with mock data as defaults
@@ -34,8 +32,6 @@ const DashboardPage = () => {
         } catch (error) {
             console.log('Using mock dashboard data (API unavailable)');
             // Keep using the already-set mock data
-        } finally {
-            setLoading(false);
         }
     };
 

@@ -9,11 +9,7 @@ const OrderListPage = () => {
     const [loading, setLoading] = useState(true);
     const [statusFilter, setStatusFilter] = useState('');
 
-    useEffect(() => {
-        fetchOrders();
-    }, [statusFilter]);
-
-    const fetchOrders = async () => {
+    const fetchOrders = React.useCallback(async () => {
         try {
             setLoading(true);
             const query = statusFilter ? `?status=${statusFilter}` : '';
@@ -25,7 +21,11 @@ const OrderListPage = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [statusFilter]);
+
+    useEffect(() => {
+        fetchOrders();
+    }, [fetchOrders]);
 
     const getStatusBadge = (status) => {
         switch (status) {

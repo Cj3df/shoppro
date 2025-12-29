@@ -229,7 +229,7 @@ const RegisterPage = () => {
                         </button>
                     </form>
 
-                    {/* Social Login (Optional placeholder) */}
+                    {/* Social Login (Optional placeholder)
                     <div className="mt-6">
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
@@ -269,7 +269,7 @@ const RegisterPage = () => {
                                 GitHub
                             </button>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* Login Link */}
                     <p className="mt-6 text-center text-sm text-slate-600">

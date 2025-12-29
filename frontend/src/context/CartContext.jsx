@@ -9,19 +9,18 @@ export const useCart = () => {
 };
 
 export const CartProvider = ({ children }) => {
-    const [cartItems, setCartItems] = useState([]);
-
-    // Load cart from local storage on mount
-    useEffect(() => {
+    const [cartItems, setCartItems] = useState(() => {
         const storedCart = localStorage.getItem('shopmaster_cart');
         if (storedCart) {
             try {
-                setCartItems(JSON.parse(storedCart));
+                return JSON.parse(storedCart);
             } catch (error) {
                 console.error('Failed to parse cart items', error);
+                return [];
             }
         }
-    }, []);
+        return [];
+    });
 
     // Save cart to local storage whenever it changes
     useEffect(() => {

@@ -8,7 +8,7 @@ const { generateToken } = require('../utils/generateToken');
  */
 const signup = async (req, res, next) => {
     try {
-        const { name, email, password, phone, role } = req.body;
+        const { name, email, password, phone } = req.body;
 
         // Check if user already exists
         const userExists = await User.findOne({ email });
@@ -25,7 +25,7 @@ const signup = async (req, res, next) => {
             email,
             password,
             phone,
-            role: role || 'customer', // Only allow role setting if needed
+            role: 'customer', // Always default to customer for public registration
         });
 
         // Generate token
